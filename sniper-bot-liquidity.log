@@ -1,0 +1,58 @@
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:48:22.061Z","timestamp":"2024-08-23T16:48:22.061Z"}
+{"level":"info","message":"Found 100 new tokens","timestamp":"2024-08-23T16:48:22.378Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SOL-Shibako (AHFmCozGbaAvFiCC4C3XgSK8LPMt1Ahi8FbFWhB8pump)","timestamp":"2024-08-23T16:48:22.379Z"}
+{"level":"info","message":"Checking liquidity and risk for token: DUPE-SOL (6jjtUFkuq6E8Nurq3j5Y6zef1SSgzgzEkaw1pfY91x9m)","timestamp":"2024-08-23T16:48:22.381Z"}
+{"level":"info","message":"Checking liquidity and risk for token: EIon-SOL (DLRqUWTzQw254aYbnDzNKdukaQwNEPN7ejEtBE6efzFy)","timestamp":"2024-08-23T16:48:22.382Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SuperTrump-SOL (5accezbjCC8EN3SnpBf3NkLc16csUiyc9pzG2g8zj2w)","timestamp":"2024-08-23T16:48:22.382Z"}
+{"level":"info","message":"Checking liquidity and risk for token: gringo-SOL (FrL5FezJCcWMSJgj3CLSbdt3bZqRLKa8kybvKFFqkDiT)","timestamp":"2024-08-23T16:48:22.383Z"}
+{"level":"warn","message":"Token AHFmCozGbaAvFiCC4C3XgSK8LPMt1Ahi8FbFWhB8pump is considered high risk with a score of 2569.","timestamp":"2024-08-23T16:48:22.623Z"}
+{"level":"info","message":"Skipping token SOL-Shibako due to high risk.","timestamp":"2024-08-23T16:48:22.623Z"}
+{"level":"warn","message":"Token 6jjtUFkuq6E8Nurq3j5Y6zef1SSgzgzEkaw1pfY91x9m is considered high risk with a score of 26454.","timestamp":"2024-08-23T16:48:22.626Z"}
+{"level":"info","message":"Skipping token DUPE-SOL due to high risk.","timestamp":"2024-08-23T16:48:22.626Z"}
+{"level":"warn","message":"Token FrL5FezJCcWMSJgj3CLSbdt3bZqRLKa8kybvKFFqkDiT is considered high risk with a score of 33089.","timestamp":"2024-08-23T16:48:22.627Z"}
+{"level":"info","message":"Skipping token gringo-SOL due to high risk.","timestamp":"2024-08-23T16:48:22.627Z"}
+{"level":"warn","message":"Token DLRqUWTzQw254aYbnDzNKdukaQwNEPN7ejEtBE6efzFy is considered high risk with a score of 1459.","timestamp":"2024-08-23T16:48:22.635Z"}
+{"level":"info","message":"Skipping token EIon-SOL due to high risk.","timestamp":"2024-08-23T16:48:22.635Z"}
+{"level":"warn","message":"Token 5accezbjCC8EN3SnpBf3NkLc16csUiyc9pzG2g8zj2w is considered high risk with a score of 11499.","timestamp":"2024-08-23T16:48:22.643Z"}
+{"level":"info","message":"Skipping token SuperTrump-SOL due to high risk.","timestamp":"2024-08-23T16:48:22.644Z"}
+{"level":"info","message":"Successfully sniped 0 out of 5 attempts","timestamp":"2024-08-23T16:48:22.644Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:48:52.256Z","timestamp":"2024-08-23T16:48:52.256Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:50:09.472Z","timestamp":"2024-08-23T16:50:09.473Z"}
+{"level":"info","message":"Found 100 new tokens","timestamp":"2024-08-23T16:50:09.801Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SOL-Shibako (AHFmCozGbaAvFiCC4C3XgSK8LPMt1Ahi8FbFWhB8pump)","timestamp":"2024-08-23T16:50:09.802Z"}
+{"level":"info","message":"Checking liquidity and risk for token: DUPE-SOL (6jjtUFkuq6E8Nurq3j5Y6zef1SSgzgzEkaw1pfY91x9m)","timestamp":"2024-08-23T16:50:09.805Z"}
+{"level":"info","message":"Checking liquidity and risk for token: EIon-SOL (DLRqUWTzQw254aYbnDzNKdukaQwNEPN7ejEtBE6efzFy)","timestamp":"2024-08-23T16:50:09.806Z"}
+{"level":"info","message":"Sniping token: SOL-Shibako (AHFmCozGbaAvFiCC4C3XgSK8LPMt1Ahi8FbFWhB8pump) with liquidity: $999999762.825156","timestamp":"2024-08-23T16:50:10.061Z"}
+{"level":"error","message":"Error sniping token SOL-Shibako: keypair is not defined","stack":"ReferenceError: keypair is not defined\n    at snipe (file:///Users/zer/Documents/lab/perso/sniper_bot_solana/src/handlers/snipeHandler.js:36:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Promise.all (index 0)\n    at async main (file:///Users/zer/Documents/lab/perso/sniper_bot_solana/index.js:24:30)","timestamp":"2024-08-23T16:50:10.061Z"}
+{"level":"warn","message":"Token DLRqUWTzQw254aYbnDzNKdukaQwNEPN7ejEtBE6efzFy is considered high risk with a score of 1103.","timestamp":"2024-08-23T16:50:10.062Z"}
+{"level":"info","message":"Skipping token EIon-SOL due to high risk.","timestamp":"2024-08-23T16:50:10.062Z"}
+{"level":"warn","message":"Token 6jjtUFkuq6E8Nurq3j5Y6zef1SSgzgzEkaw1pfY91x9m is considered high risk with a score of 26454.","timestamp":"2024-08-23T16:50:10.075Z"}
+{"level":"info","message":"Skipping token DUPE-SOL due to high risk.","timestamp":"2024-08-23T16:50:10.076Z"}
+{"level":"info","message":"Successfully sniped 0 out of 3 attempts","timestamp":"2024-08-23T16:50:10.076Z"}
+{"level":"info","message":"Found 1 new tokens","timestamp":"2024-08-23T16:50:41.823Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SOL-dаvid (8aNY1e1hcLFd8cELZpcJz9VA4wMNg9TL2CMLcoDpnYG3)","timestamp":"2024-08-23T16:50:41.824Z"}
+{"level":"warn","message":"Token 8aNY1e1hcLFd8cELZpcJz9VA4wMNg9TL2CMLcoDpnYG3 is considered high risk with a score of 6500.","timestamp":"2024-08-23T16:50:42.076Z"}
+{"level":"info","message":"Skipping token SOL-dаvid due to high risk.","timestamp":"2024-08-23T16:50:42.077Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2024-08-23T16:50:42.077Z"}
+{"level":"info","message":"Found 1 new tokens","timestamp":"2024-08-23T16:51:50.786Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SOLANA-SOL (aKW27gmqR1BFp6rQSi2kd1zeKpSsBEnNcwpBt1Jpump)","timestamp":"2024-08-23T16:51:50.786Z"}
+{"level":"warn","message":"Token aKW27gmqR1BFp6rQSi2kd1zeKpSsBEnNcwpBt1Jpump is considered high risk with a score of 11178.","timestamp":"2024-08-23T16:51:51.900Z"}
+{"level":"info","message":"Skipping token SOLANA-SOL due to high risk.","timestamp":"2024-08-23T16:51:51.900Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2024-08-23T16:51:51.900Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:52:46.938Z","timestamp":"2024-08-23T16:52:46.939Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:53:02.589Z","timestamp":"2024-08-23T16:53:02.589Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:53:29.415Z","timestamp":"2024-08-23T16:53:29.415Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:53:43.376Z","timestamp":"2024-08-23T16:53:43.376Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:53:50.444Z","timestamp":"2024-08-23T16:53:50.444Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2024-08-23T16:54:52.887Z","timestamp":"2024-08-23T16:54:52.887Z"}
+{"level":"info","message":"Found 100 new tokens","timestamp":"2024-08-23T16:54:53.212Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SOLANA-SOL (aKW27gmqR1BFp6rQSi2kd1zeKpSsBEnNcwpBt1Jpump)","timestamp":"2024-08-23T16:54:53.212Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SOL-dаvid (8aNY1e1hcLFd8cELZpcJz9VA4wMNg9TL2CMLcoDpnYG3)","timestamp":"2024-08-23T16:54:53.215Z"}
+{"level":"info","message":"Checking liquidity and risk for token: SOL-Shibako (AHFmCozGbaAvFiCC4C3XgSK8LPMt1Ahi8FbFWhB8pump)","timestamp":"2024-08-23T16:54:53.216Z"}
+{"level":"warn","message":"Token aKW27gmqR1BFp6rQSi2kd1zeKpSsBEnNcwpBt1Jpump is considered high risk with a score of 4569.","timestamp":"2024-08-23T16:54:53.510Z"}
+{"level":"info","message":"Skipping token SOLANA-SOL due to high risk.","timestamp":"2024-08-23T16:54:53.510Z"}
+{"level":"info","message":"Sniping token: SOL-dаvid (8aNY1e1hcLFd8cELZpcJz9VA4wMNg9TL2CMLcoDpnYG3) with liquidity: $999999999.66879","timestamp":"2024-08-23T16:54:53.517Z"}
+{"level":"error","message":"Error sniping token SOL-dаvid: keypair is not defined","stack":"ReferenceError: keypair is not defined\n    at snipe (file:///Users/zer/Documents/lab/perso/sniper_bot_solana/src/handlers/snipeHandler.js:36:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async file:///Users/zer/Documents/lab/perso/sniper_bot_solana/index.js:48:28\n    at async Promise.all (index 1)\n    at async main (file:///Users/zer/Documents/lab/perso/sniper_bot_solana/index.js:46:30)","timestamp":"2024-08-23T16:54:53.518Z"}
+{"level":"info","message":"Sniping token: SOL-Shibako (AHFmCozGbaAvFiCC4C3XgSK8LPMt1Ahi8FbFWhB8pump) with liquidity: $999999762.825156","timestamp":"2024-08-23T16:54:53.524Z"}
+{"level":"error","message":"Error sniping token SOL-Shibako: keypair is not defined","stack":"ReferenceError: keypair is not defined\n    at snipe (file:///Users/zer/Documents/lab/perso/sniper_bot_solana/src/handlers/snipeHandler.js:36:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async file:///Users/zer/Documents/lab/perso/sniper_bot_solana/index.js:48:28\n    at async Promise.all (index 2)\n    at async main (file:///Users/zer/Documents/lab/perso/sniper_bot_solana/index.js:46:30)","timestamp":"2024-08-23T16:54:53.524Z"}
+{"level":"info","message":"Successfully sniped 0 out of 3 attempts","timestamp":"2024-08-23T16:54:53.524Z"}
