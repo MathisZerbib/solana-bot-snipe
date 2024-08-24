@@ -4,6 +4,7 @@ import { getLiquidityAndRisk } from "../utils/tokenUtils.js";
 import { convertWSolToUSD } from "../utils/priceUtils.js";
 import { logger } from "../logger/logger.js";
 import fs from "fs";
+import { keypair } from "../services/solanaService.js";
 
 export async function snipe(tokenAddress, tokenName) {
   logger.info(

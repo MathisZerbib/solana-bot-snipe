@@ -22,9 +22,13 @@ async function getRiskScore(tokenAddress) {
   }
 }
 
+
+
+
 // Function to get liquidity and check risk score
 export async function getLiquidityAndRisk(tokenAddress) {
   try {
+    console.log("Getting liquidity and risk for token:", tokenAddress);
     const tokenMint = new PublicKey(tokenAddress);
     const mintInfo = await spl.getMint(connection, tokenMint);
     const liquidity = Number(mintInfo.supply) / 10 ** mintInfo.decimals;
