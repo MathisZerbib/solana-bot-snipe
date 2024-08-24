@@ -1,10 +1,16 @@
 import { CONFIG } from "../config/config.js";
 import { solanaTracker } from "../services/solanaService.js";
 import { getLiquidityAndRisk } from "../utils/tokenUtils.js";
-import { convertWSolToUSD } from "../utils/priceUtils.js";
+import {
+  monitorToken,
+  adjustTakeProfit,
+  adjustStopLoss,
+} from "./tradeHandler.js";
+import { convertWSolToUSD, getTokenPriceInSOL } from "../utils/priceUtils.js";
 import { logger } from "../logger/logger.js";
 import fs from "fs";
 import { keypair } from "../services/solanaService.js";
+import chalk from "chalk";
 
 export async function snipe(tokenAddress, tokenName) {
   logger.info(
@@ -39,31 +45,31 @@ export async function snipe(tokenAddress, tokenName) {
     );
 
     const txid = await solanaTracker.performSwap(swapResponse);
-    logger.info(`Transaction successful for ${tokenName}:`, {
+    logger.info(chalk.yellow(`Transaction successful for ${tokenName}:`), {
       txid,
       url: `https://explorer.solana.com/tx/${txid}`,
     });
 
-    const entryPriceInSOL = await getTokenPriceInSOL(tokenAddress); // Ensure this function is defined
+    // Here tell to stop other snipes
+    // Calculate prices for stop-loss and take-profit
+
+    const entryPriceInSOL = await getTokenPriceInSOL(tokenAddress);
     const entryPriceInUSD = await convertWSolToUSD(entryPriceInSOL);
 
-    const result = await monitorToken(tokenAddress, entryPriceInUSD); // Ensure this function is defined
+    const result = await monitorToken(tokenAddress, entryPriceInUSD);
 
     logger.info(`Result for ${tokenName}: ${result}`);
 
     const exitPriceInUSD =
       result === "Take Profit"
-        ? adjustTakeProfit(entryPriceInUSD) // Ensure this function is defined
-        : adjustStopLoss(entryPriceInUSD); // Ensure this function is defined
+        ? adjustTakeProfit(entryPriceInUSD)
+        : adjustStopLoss(entryPriceInUSD);
 
     const profitInUSD = exitPriceInUSD - entryPriceInUSD;
 
     currentCapital += profitInUSD;
     logger.info(`Profit from ${tokenName}: $${profitInUSD.toFixed(2)}`);
     logger.info(`Updated current capital: $${currentCapital.toFixed(2)}`);
-
-    // Reinvest part of the profit
-    reinvestProfits(profitInUSD); // Ensure this function is defined
 
     // Record successful snipe
     const snipeData = {

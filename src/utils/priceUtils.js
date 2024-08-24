@@ -21,3 +21,16 @@ export async function convertWSolToUSD(wSolAmount) {
   const solPriceInUSD = await getSolPriceInUSD();
   return wSolAmount * solPriceInUSD;
 }
+
+export async function getTokenPriceInSOL(tokenAddress) {
+  try {
+    const response = await fetch(
+      `https://api.solanatracker.io/price/${tokenAddress}`
+    );
+    const priceData = await response.json();
+    return priceData.priceInSOL;
+  } catch (error) {
+    logger.error(`Error fetching price for token ${tokenAddress}:`, error);
+    return 0;
+  }
+}

@@ -6,6 +6,9 @@ import fs from "fs";
 
 const SKIPPED_TOKENS_FILE = "./skipped-tokens.json";
 
+// Global flag to stop further sniping after a successful transaction
+let hasSnipedSuccessfully = false;
+
 // Load skipped tokens from file
 function loadSkippedTokens() {
   if (fs.existsSync(SKIPPED_TOKENS_FILE)) {
@@ -34,6 +37,14 @@ async function main() {
 
   while (true) {
     try {
+      // If a successful snipe has already occurred, stop the loop
+      if (hasSnipedSuccessfully) {
+        logger.info(
+          "A successful snipe occurred. Stopping further sniping attempts."
+        );
+        break; // Exit the loop and stop the bot
+      }
+
       const tokens = await getLatestTokens();
       const newTokens = tokens.filter(
         (token) =>
@@ -51,6 +62,11 @@ async function main() {
             if (!result) {
               skippedTokens.add(token.address);
               saveSkippedTokens(skippedTokens);
+            }
+
+            // If a successful snipe occurred, set the flag and stop further sniping
+            if (result) {
+              hasSnipedSuccessfully = true;
             }
 
             return result;
