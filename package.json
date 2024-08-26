@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@pythnetwork/client": "^2.21.1",
     "@solana/spl-token": "^0.4.8",
     "@solana/web3.js": "^1.95.3",
     "axios": "^1.7.5",

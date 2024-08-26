@@ -1,36 +1,38 @@
 import fetch from "node-fetch";
 import { logger } from "../logger/logger.js";
-
+// Function to fetch SOL price in USD from Dexscreener
 export async function getSolPriceInUSD() {
   try {
-    const response = await fetch("https://public-api.solscan.io/market");
-    const marketData = await response.json();
-    if (marketData && marketData.data && marketData.data.priceUsdt) {
-      return marketData.data.priceUsdt;
+    const response = await fetch(
+      "https://api.dexscreener.com/latest/dex/search?q=SOL%20USDC"
+    );
+    const data = await response.json();
+
+    // Find the pair where SOL is the base token and USDC is the quote token
+    const pairData = data.pairs.find(
+      (pair) =>
+        pair.baseToken.symbol === "SOL" && pair.quoteToken.symbol === "USDC"
+    );
+
+    if (pairData) {
+      const solPriceInUSD = parseFloat(pairData.priceUsd);
+      logger.info(`SOL price in USD: $${solPriceInUSD}`);
+      return solPriceInUSD;
     } else {
-      logger.error("Error: Failed to retrieve SOL price from Solscan.");
-      return 0;
+      throw new Error("Unable to retrieve SOL price from Dexscreener API");
     }
   } catch (error) {
-    logger.error("Error fetching SOL price from Solscan:", error);
-    return 0;
+    logger.error("Error fetching SOL price:", error);
+    return null;
   }
 }
 
+// Function to convert wSOL amount to USD
 export async function convertWSolToUSD(wSolAmount) {
   const solPriceInUSD = await getSolPriceInUSD();
+  if (!solPriceInUSD) {
+    return 0;
+  }
   return wSolAmount * solPriceInUSD;
 }
 
-export async function getTokenPriceInSOL(tokenAddress) {
-  try {
-    const response = await fetch(
-      `https://api.solanatracker.io/price/${tokenAddress}`
-    );
-    const priceData = await response.json();
-    return priceData.priceInSOL;
-  } catch (error) {
-    logger.error(`Error fetching price for token ${tokenAddress}:`, error);
-    return 0;
-  }
-}
