@@ -85,22 +85,6 @@ export async function snipe(tokenAddress, tokenName) {
   }
 }
 
-// Function to calculate the take-profit price based on entry price
-export function adjustTakeProfit(entryPriceInUSD) {
-  const takeProfitPercentage = CONFIG.takeProfitPercentage || 10; // Default to 10% if not specified
-  return entryPriceInUSD * (1 + takeProfitPercentage / 100);
-}
-
-// Function to dynamically adjust the take-profit percentage based on current price
-export function dynamicTakeProfit(entryPriceInUSD, currentPriceInUSD) {
-  const priceIncreasePercentage =
-    ((currentPriceInUSD - entryPriceInUSD) / entryPriceInUSD) * 100;
-  const dynamicTakeProfitPercentage =
-    CONFIG.baseTakeProfitPercentage +
-    priceIncreasePercentage * CONFIG.adjustmentFactor;
-  return entryPriceInUSD * (1 + dynamicTakeProfitPercentage / 100);
-}
-
 // Function to log information
 function logInfo(message) {
   logger.info(message);
