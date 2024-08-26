@@ -1,10 +1,7 @@
 import { CONFIG } from "../config/config.js";
 import { solanaTracker } from "../services/solanaService.js";
-import {
-  getLiquidityAndRisk,
-  getTokenPriceInSOL,
-} from "../utils/tokenUtils.js";
-import { convertWSolToUSD, getSolPriceInUSD } from "../utils/priceUtils.js";
+import { getTokenPriceInSOL } from "../utils/tokenUtils.js";
+import { getSolPriceInUSD } from "../utils/priceUtils.js";
 import { logger } from "../logger/logger.js";
 import fs from "fs";
 import { keypair } from "../services/solanaService.js";
