@@ -7,35 +7,68 @@ const RUGCHECK_URL = "https://api.rugcheck.xyz/v1/tokens/";
 const MAX_RISK_SCORE = CONFIG.riskScore; // Define your threshold for risk score
 const MIN_LIQUIDITY = CONFIG.minLiquidity || 10000; // Set the minimum liquidity threshold
 
-// Function to fetch the risk score for a token using RugChecker
-async function getRiskScore(tokenAddress) {
+interface RiskScoreResponse {
+  score?: number;
+}
+
+interface DexScreenerPair {
+  liquidity?: {
+    usd: number,
+  };
+  priceUsd?: string;
+  priceNative?: string;
+  pairAddress: string;
+}
+
+interface DexScreenerResponse {
+  pairs?: DexScreenerPair[];
+}
+
+interface DexScreenerData {
+  liquidity: number;
+  priceUsd: number;
+  priceNative: number;
+  lockedLiquidity: boolean;
+  pairAddress: string;
+}
+
+interface LiquidityAndRiskResult {
+  liquidity: number;
+  priceUsd?: number;
+  priceNative?: number;
+  lockedLiquidity?: boolean;
+  pairAddress?: string;
+  highRisk: boolean;
+}
+
+async function getRiskScore(tokenAddress: string): Promise<number> {
   try {
     const response = await fetch(
       `${RUGCHECK_URL}${tokenAddress}/report/summary`
     );
-    const data = await response.json();
-    const riskScore = data.score || 0; // Default to 0 if no score is available
-    return riskScore;
+    const data: RiskScoreResponse = await response.json() as RiskScoreResponse;
+    return data.score || 0; // Default to 0 if no score is available
   } catch (error) {
     logger.error(`Error fetching risk score for token ${tokenAddress}:`, error);
     return 0;
   }
 }
 
-// Function to get liquidity, price data, and locked liquidity status using DEX Screener
-async function getDexScreenerData(tokenAddress) {
+async function getDexScreenerData(
+  tokenAddress: string
+): Promise<DexScreenerData | null> {
   try {
     const response = await fetch(`${DEX_SCREENER_API_URL}${tokenAddress}`);
-    const data = await response.json();
+    const data: DexScreenerResponse = await response.json() as DexScreenerResponse;
 
     if (data.pairs && data.pairs.length > 0) {
-      const { liquidity, priceUsd, priceNative, pairAddress } = data.pairs[0]; // Assuming we're interested in the first pair
+      const { liquidity, priceUsd, priceNative, pairAddress } = data.pairs[0];
       return {
         liquidity: liquidity?.usd || 0,
-        priceUsd: priceUsd || 0,
-        priceNative: priceNative || 0,
-        lockedLiquidity: liquidity && liquidity.usd > 0, // Assuming locked liquidity is reflected by positive liquidity
-        pairAddress,
+        priceUsd: parseFloat(priceUsd || "0"),
+        priceNative: parseFloat(priceNative || "0"),
+        lockedLiquidity: !!(liquidity && liquidity.usd > 0),
+        pairAddress: pairAddress,
       };
     } else {
       logger.warn(
@@ -52,22 +85,20 @@ async function getDexScreenerData(tokenAddress) {
   }
 }
 
-// Function to get liquidity, price, and risk assessment for a token
-export async function getLiquidityAndRisk(tokenAddress) {
+export async function getLiquidityAndRisk(
+  tokenAddress: string
+): Promise<LiquidityAndRiskResult> {
   try {
     console.log("Getting liquidity, price, and risk for token:", tokenAddress);
 
-    // Fetch DEX Screener data
     const dexData = await getDexScreenerData(tokenAddress);
 
     if (!dexData) {
       return { liquidity: 0, highRisk: true };
     }
 
-    // Fetch risk score from RugChecker
     const riskScore = await getRiskScore(tokenAddress);
 
-    // Check if the risk score is too high
     if (riskScore > MAX_RISK_SCORE) {
       logger.warn(
         `Token ${tokenAddress} is considered high risk with a score of ${riskScore}.`
@@ -75,7 +106,6 @@ export async function getLiquidityAndRisk(tokenAddress) {
       return { liquidity: 0, highRisk: true };
     }
 
-    // Check if the liquidity is below the minimum threshold
     if (dexData.liquidity < MIN_LIQUIDITY) {
       logger.warn(
         `Token ${tokenAddress} has insufficient liquidity: $${dexData.liquidity.toFixed(
@@ -85,7 +115,6 @@ export async function getLiquidityAndRisk(tokenAddress) {
       return { liquidity: dexData.liquidity, highRisk: true };
     }
 
-    // Return liquidity and risk assessment
     return {
       liquidity: dexData.liquidity,
       priceUsd: dexData.priceUsd,
