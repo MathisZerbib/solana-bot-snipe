@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import { logger } from "../logger/logger.js";
 import { CONFIG } from "../config/config.js";
 
