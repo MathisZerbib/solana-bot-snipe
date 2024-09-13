@@ -75,7 +75,7 @@ async function processToken(token: Token): Promise<boolean> {
       }
 
       const entryPriceInSOL = await getTokenInfo(tokenAddress);
-      const entryPriceInUSD = await convertWSolToUSD(entryPriceInSOL);
+      const entryPriceInUSD = convertWSolToUSD(entryPriceInSOL);
 
       logger.info(`Token ${tokenName} bought at: ${entryPriceInUSD} USD for ${CONFIG.amountToSwap} SOL`);
 

@@ -1,4 +1,4 @@
-import { convertWSolToUSD, getTokenInfo } from "../utils/priceUtils.js";
+import { getTokenInfo } from "../utils/priceUtils.js";
 import { solanaTracker } from "../services/solanaService.js";
 import { logger } from "../logger/logger.js";
 import { CONFIG } from "../config/config.js";

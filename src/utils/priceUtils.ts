@@ -64,6 +64,6 @@ export async function getTokenInfo(tokenAddress: string): Promise<number> {
   }
 }
 
-export async function convertWSolToUSD(priceInSOL: number): Promise<number> {
+export function convertWSolToUSD(priceInSOL: number): number {
   return priceInSOL * solPriceInUSD;
 }

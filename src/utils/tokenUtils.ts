@@ -62,8 +62,13 @@ interface LiquidityAndRiskResult {
 async function getRiskScore(tokenAddress: string): Promise<number> {
   try {
     const response = await axios.get(`${RUGCHECK_URL}${tokenAddress}/report/summary`);
-    const score = response.data.score || 0;
-    // console.log(chalk.green(`Risk score for token ${tokenAddress}: ${score}`));
+    const score = response.data.score;
+
+    if (score > CONFIG.riskScore) {
+      console.warn(chalk.yellow(`Token ${tokenAddress} has a high risk score: ${score}`));
+    } else {
+      console.log(chalk.green(`Token ${tokenAddress} has a risk score of ${score}`));
+    }
     return score;
   } catch (error) {
     console.error(chalk.red(`Error fetching risk score for token ${tokenAddress}:`), error);
