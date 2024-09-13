@@ -1,33 +1,10 @@
-import { Keypair, Connection } from "@solana/web3.js";
-import bs58 from "bs58";
-import { SolanaTracker } from "solana-swap";
+import { convertWSolToUSD, getTokenInfo } from "../utils/priceUtils.js";
+import { solanaTracker } from "../services/solanaService.js";
 import { logger } from "../logger/logger.js";
-
-import dotenv from "dotenv";
-import { CONFIG } from "../config/config";
+import { CONFIG } from "../config/config.js";
 import chalk from "chalk";
-
-dotenv.config();
-
-export const keypair = Keypair.fromSecretKey(
-  bs58.decode(process.env.SOLANA_PRIVATE_KEY!)
-);
-
-export const connection = new Connection(
-  process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com"
-);
-
-export const solanaTracker = new SolanaTracker(
-  keypair,
-  process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com"
-);
-
-export async function getLatestTokens(): Promise<any[]> {
-  const response = await fetch("https://api.solanatracker.io/tokens/latest");
-  const tokens = await response.json();
-  return tokens;
-}
-
+import { SwapResponse } from "solana-swap/dist/types/types.js";
+import { Token } from "../types/token.js";
 interface SellStrategy {
   initialSellPercentage: number;
   subsequentSellPercentages: number[];
@@ -55,56 +32,68 @@ export function adjustStopLoss(entryPrice: number, currentPrice: number): number
   return currentPrice * (1 - stopLossPercentage);
 }
 
-export async function snipe(tokenAddress: string): Promise<string> {
-  console.log("Sniping token:", tokenAddress);
-  const swapInstructions = await solanaTracker.getSwapInstructions(
-    "So11111111111111111111111111111111111111112", // From Token (SOL)
-    tokenAddress, // To Token (new token address)
-    CONFIG.amountToSwap,
-    CONFIG.slippage,
-    keypair.publicKey.toBase58(), // Payer public key
-    CONFIG.priorityFee
-  );
+export async function buyToken(token: Token): Promise<boolean> {
+  try {
+    const { address: tokenAddress } = token;
+    if (token.liquidity < CONFIG.minLiquidity || token.highRisk) {
+      return false;
+    }
 
-  const txid = await solanaTracker.performSwap(swapInstructions);
-  console.log("Transaction ID:", txid);
-  console.log("Transaction URL:", `https://explorer.solana.com/tx/${txid}`);
-  return txid;
+    let createdAt = new Date(token.createdAt);
+
+    console.log(chalk.green(`Token ${token.name} is eligible for sniping. Proceeding... liquidity ${token.liquidity} risk ${token.highRisk} créé le ${createdAt}  ${token.address}`));
+    logger.info(`Sniping token: ${tokenAddress}`);
+    const swapResponse: SwapResponse = await solanaTracker.getSwapInstructions(
+      "So11111111111111111111111111111111111111112", // From Token (SOL)
+      tokenAddress,
+      CONFIG.amountToSwap,
+      CONFIG.slippage,
+      CONFIG.keypair.publicKey.toString(), // Use toString() instead of toBase58()
+      CONFIG.priorityFee
+    );
+
+    const txid: string = await solanaTracker.performSwap(swapResponse);
+    return true;
+  } catch (error) {
+    logger.error(`Failed to snipe token ${token.address}:`, error);
+    return false;
+  }
 }
 
-export async function sellToken(tokenAddress: string, amountToSell: number): Promise<string> {
+export async function sellToken(tokenAddress: string, amountToSell: number): Promise<boolean> {
   if (typeof tokenAddress !== "string" || tokenAddress.trim() === "") {
     throw new Error("Invalid token address");
   }
 
   try {
-    logger.info(chalk.yellow(`Attempting to sell ${amountToSell} of token: ${tokenAddress}`));
-
-    const swapInstructions = await solanaTracker.getSwapInstructions(
+    const swapResponse: SwapResponse = await solanaTracker.getSwapInstructions(
       tokenAddress,
-      "So11111111111111111111111111111111111111112", // To SOL
+      "So11111111111111111111111111111111111111112",
       amountToSell,
       CONFIG.slippage,
-      keypair.publicKey.toBase58(),
+      CONFIG.keypair.publicKey.toString(),
       CONFIG.priorityFee
     );
 
-    const txid = await solanaTracker.performSwap(swapInstructions);
-    logger.info(
-      chalk.green(
-        `Successfully sold ${amountToSell} of token ${tokenAddress}. Transaction ID: ${txid}`
-      )
-    );
-    return txid;
+    const txid: string = await solanaTracker.performSwap(swapResponse);
+    console.log(txid);
+    if (txid) {
+      logger.info(
+        `Successfully sold ${amountToSell} tokens of ${tokenAddress}. Transaction ID: ${txid}`
+      );
+    } else {
+      logger.error(`Failed to sell token ${tokenAddress}`);
+    }
+    return true;
   } catch (error) {
     logger.error(chalk.red(`Failed to sell token ${tokenAddress}:`), error);
-    throw new Error(`Failed to sell token ${tokenAddress}`);
+    return false;
   }
 }
 
 type MonitorResult = "Take Profit" | "Stop Loss" | "Partial Sell";
-
 export async function monitorToken(
+  tokenName: string,
   tokenAddress: string,
   entryPrice: number,
   initialAmount: number
@@ -117,68 +106,67 @@ export async function monitorToken(
   let stopLossPrice = adjustStopLoss(entryPrice, entryPrice);
   let remainingAmount = initialAmount;
   let sellStage = 0;
+  let highestPrice = entryPrice;
 
   logger.info(
-    `Monitoring token: ${tokenAddress}, Entry Price: $${entryPrice.toFixed(2)}, Initial TP: $${takeProfitPrice.toFixed(2)}, Initial SL: $${stopLossPrice.toFixed(2)}`
+    `Monitoring token: ${tokenAddress}, Entry Price: $${entryPrice.toFixed(6)}, Initial TP: $${takeProfitPrice.toFixed(6)}, Initial SL: $${stopLossPrice.toFixed(6)}`
   );
 
   while (remainingAmount > 0) {
-    const currentPriceInSOL = getTokenPriceInSOL(tokenAddress);
-    if (typeof currentPriceInSOL !== "number" || isNaN(currentPriceInSOL)) {
-      throw new Error("Invalid current price in SOL");
-    }
+    try {
+      let currentPriceInSOL = await getTokenInfo(tokenAddress);
 
-    const currentPriceInUSD = convertWSolToUSD(currentPriceInSOL);
-    if (typeof currentPriceInUSD !== "number" || isNaN(currentPriceInUSD)) {
-      throw new Error("Invalid current price in USD");
-    }
+      logger.info(`Current price of ${tokenName}: ${currentPriceInSOL.toFixed(6)} SOL`);
 
-    // Adjust stop loss
-    stopLossPrice = adjustStopLoss(entryPrice, currentPriceInUSD);
-
-    if (currentPriceInUSD >= takeProfitPrice) {
-      const sellPercentage = sellStage === 0 ? SELL_STRATEGY.initialSellPercentage : SELL_STRATEGY.subsequentSellPercentages[sellStage - 1];
-      const amountToSell = remainingAmount * sellPercentage;
-
-      logger.info(`Partial sell triggered for token ${tokenAddress}. Selling ${sellPercentage * 100}%...`);
-      await sellToken(tokenAddress, amountToSell);
-
-      remainingAmount -= amountToSell;
-      sellStage++;
-
-      if (sellStage <= SELL_STRATEGY.priceIncrementTriggers.length) {
-        takeProfitPrice = currentPriceInUSD * SELL_STRATEGY.priceIncrementTriggers[sellStage - 1];
-      } else {
-        // If all stages completed, sell remaining amount
-        if (remainingAmount > 0) {
-          await sellToken(tokenAddress, remainingAmount);
-          remainingAmount = 0;
-        }
-        return "Take Profit";
+      // Update highest price and adjust stop loss
+      if (currentPriceInSOL > highestPrice) {
+        highestPrice = currentPriceInSOL;
+        stopLossPrice = adjustStopLoss(entryPrice, highestPrice);
+        takeProfitPrice = Math.max(takeProfitPrice, currentPriceInSOL * CONFIG.takeProfitPercentage); // Adjust take profit based on new high
+        logger.info(`SL: ${stopLossPrice.toFixed(6)} TP: ${takeProfitPrice.toFixed(6)} Price: ${highestPrice.toFixed(6)}`);
       }
 
-      logger.info(`New take profit price: $${takeProfitPrice.toFixed(2)}, Remaining amount: ${remainingAmount}`);
-      return "Partial Sell";
-    } else if (currentPriceInUSD <= stopLossPrice) {
-      logger.info(`Stop loss hit for token ${tokenAddress}. Selling remaining amount...`);
-      await sellToken(tokenAddress, remainingAmount);
-      return "Stop Loss";
-    }
+      // Reset stop loss if price drops below entry
+      if (currentPriceInSOL < entryPrice && stopLossPrice > entryPrice * CONFIG.stopLossPercentage) {
+        stopLossPrice = adjustStopLoss(entryPrice, currentPriceInSOL);
+        logger.info(`Reset SL: ${stopLossPrice.toFixed(6)}`);
+      }
 
-    // Wait before checking the price again
-    await new Promise((resolve) =>
-      setTimeout(resolve, CONFIG.priceCheckInterval)
-    );
+      if (currentPriceInSOL >= takeProfitPrice) {
+        const sellPercentage = sellStage === 0 ? SELL_STRATEGY.initialSellPercentage : SELL_STRATEGY.subsequentSellPercentages[sellStage - 1];
+        const amountToSell = remainingAmount * sellPercentage;
+
+        logger.info(`Take profit triggered for ${tokenAddress}. Selling ${sellPercentage * 100}%...`);
+        const sellSuccess = await sellToken(tokenAddress, amountToSell);
+
+        if (sellSuccess) {
+          remainingAmount -= amountToSell;
+          sellStage++;
+
+          if (remainingAmount > 0 && sellStage < SELL_STRATEGY.priceIncrementTriggers.length) {
+            takeProfitPrice = currentPriceInSOL * SELL_STRATEGY.priceIncrementTriggers[sellStage];
+            logger.info(`New take profit price: ${takeProfitPrice.toFixed(6)}, Remaining amount: ${remainingAmount}`);
+          } else {
+            if (remainingAmount > 0) {
+              await sellToken(tokenAddress, remainingAmount);
+            }
+            logger.info(`All ${tokenAddress} tokens sold. Monitoring complete.`);
+            return "Take Profit";
+          }
+        }
+      } else if (currentPriceInSOL <= stopLossPrice) {
+        logger.info(`Stop loss hit for ${tokenAddress}. Selling remaining amount...`);
+        await sellToken(tokenAddress, remainingAmount);
+        logger.info(`All ${tokenAddress} tokens sold due to stop loss. Monitoring complete.`);
+        return "Stop Loss";
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, CONFIG.priceCheckInterval));
+    } catch (error) {
+      logger.error(`Error monitoring ${tokenAddress}:`, error);
+      await new Promise((resolve) => setTimeout(resolve, CONFIG.errorRetryInterval));
+    }
   }
 
   return "Take Profit"; // All amount sold
-}
-
-function getTokenPriceInSOL(tokenAddress: string) {
-  throw new Error("Function not implemented.");
-}
-
-
-function convertWSolToUSD(currentPriceInSOL: number) {
-  throw new Error("Function not implemented.");
 }

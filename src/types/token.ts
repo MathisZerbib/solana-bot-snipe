@@ -5,6 +5,9 @@ export type TokenAddress = string;
 export interface Token {
     name: TokenName;
     address: TokenAddress;
+    createdAt: string;
+    liquidity: number;
+    highRisk: boolean;
 }
 
 // src/types/config.ts
@@ -36,6 +39,7 @@ export interface DexScreenerPair {
     priceUsd?: string;
     priceNative?: string;
     pairAddress: string;
+    pairCreatedAt: string;
 }
 
 export interface DexScreenerResponse {

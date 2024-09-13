@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import { logger } from "../logger/logger.js";
+const solPriceInUSD = await getSolPriceInUSD();
 
 
 interface CoinGeckoResponse {
@@ -9,6 +10,7 @@ interface CoinGeckoResponse {
 }
 
 interface DexScreenerPair {
+  pairCreatedAt: EpochTimeStamp;
   priceNative: string;
   // Add other properties as needed
 }
@@ -36,9 +38,7 @@ export async function getSolPriceInUSD(): Promise<number> {
   }
 }
 
-export async function getTokenPriceInSOL(
-  tokenAddress: string
-): Promise<number> {
+export async function getTokenInfo(tokenAddress: string): Promise<number> {
   try {
     const response = await fetch(
       `https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`
@@ -47,7 +47,8 @@ export async function getTokenPriceInSOL(
 
     if (priceData && priceData.pairs && priceData.pairs.length > 0) {
       const pair = priceData.pairs[0];
-      console.log("Pair:", pair);
+      // console.log("Pair Created At:", creationDate.toUTCString());
+
       const priceInSOL = parseFloat(pair.priceNative);
       return priceInSOL;
     } else {
@@ -64,6 +65,5 @@ export async function getTokenPriceInSOL(
 }
 
 export async function convertWSolToUSD(priceInSOL: number): Promise<number> {
-  const solPriceInUSD = await getSolPriceInUSD();
   return priceInSOL * solPriceInUSD;
 }
