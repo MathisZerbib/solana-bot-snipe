@@ -1,15 +1,20 @@
-FROM node:20-alpine as build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
 COPY package*.json ./
+# Install Python/G++ build dependencies for nested node-gyp native crypto modules
+RUN apk add --no-cache python3 make g++ linux-headers eudev-dev
 RUN npm install
 
 COPY . .
 
-# Accept the Paper Trade mode from docker-compose
+# Accept Build-Time Hooks from docker-compose
 ARG VITE_PAPER_TRADE_MODE
 ENV VITE_PAPER_TRADE_MODE=$VITE_PAPER_TRADE_MODE
+
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 
 RUN npm run build
 

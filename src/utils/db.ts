@@ -76,3 +76,12 @@ export function addSnipedTokenDb(address: string, name: string, txid: string, li
         );
     });
 }
+
+export function getSnipedTokensDb(): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM sniped_tokens ORDER BY timestamp DESC LIMIT 20', (err, rows) => {
+            if (err) return reject(err);
+            resolve(rows);
+        });
+    });
+}

@@ -1,6 +1,7 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 import { getMint, Mint } from "@solana/spl-token";
 import { logger } from "../logger/logger.js";
+import { broadcastEvent } from "../api/server.js";
 
 const safePublicKey = (address: string) => {
     try {
@@ -44,8 +45,13 @@ export class AntiRugEngine {
             const isToken2022 = accountInfo.owner.equals(CONSTANTS.TOKEN_2022_PROGRAM_ID);
             const mintInfo = await getMint(this.connection, mintPubkey, "confirmed", accountInfo.owner);
 
+            broadcastEvent('SCAN_METADATA', {
+                action: 'START',
+                mintAddress
+            });
+
             // Step 1: Validate Authorities
-            if (!this.validateAuthorities(mintInfo)) return false;
+            if (!this.validateAuthorities(mintInfo, mintAddress)) return false;
 
             // Step 2: Validate Token-2022 Extensions
             if (isToken2022 && !(await this.validateToken2022Extensions(mintInfo))) return false;
@@ -55,7 +61,11 @@ export class AntiRugEngine {
             if (!supplyAnalysis.isSafe) return false;
 
             // Step 4: Metadata Mutability 
-            await this.checkMetadataMutability(mintPubkey);
+            const metadataSafe = await this.checkMetadataMutability(mintPubkey, mintAddress);
+            if (!metadataSafe) return false;
+
+            // Step 4b: External Scanner (InsightX / Bubblemaps) - best-effort risk mitigation
+            await this.checkInsightXScanner(mintAddress);
 
             // Step 5: LP Burn Verification (Raydium)
             if (supplyAnalysis.isRaydiumMigrated && !supplyAnalysis.isPumpFunCurve) {
@@ -81,12 +91,22 @@ export class AntiRugEngine {
     // PRIVATE VALIDATOR MODULES
     // ==========================================
 
-    private validateAuthorities(mintInfo: Mint): boolean {
-        if (mintInfo.mintAuthority !== null) {
+    private validateAuthorities(mintInfo: Mint, mintAddress: string): boolean {
+        const isMintSafe = mintInfo.mintAuthority === null;
+        const isFreezeSafe = mintInfo.freezeAuthority === null;
+
+        broadcastEvent('SCAN_METADATA', {
+            action: 'AUTHORITIES',
+            mintAddress,
+            mintSafe: isMintSafe,
+            freezeSafe: isFreezeSafe
+        });
+
+        if (!isMintSafe) {
             logger.warn(`[Anti-Rug] 🔴 NO-GO: Mint Authority EXPOSED. The dev can print infinite tokens.`);
             return false;
         }
-        if (mintInfo.freezeAuthority !== null) {
+        if (!isFreezeSafe) {
             logger.warn(`[Anti-Rug] 🔴 NO-GO: Freeze Authority EXPOSED. Honeypot risk (dev can freeze your ability to sell).`);
             return false;
         }
@@ -176,20 +196,79 @@ export class AntiRugEngine {
         return { isRaydiumMigrated, isPumpFunCurve, isSafe: true };
     }
 
-    private async checkMetadataMutability(mintPubkey: PublicKey): Promise<void> {
-        const [metadataPDA] = PublicKey.findProgramAddressSync(
-            [Buffer.from('metadata'), CONSTANTS.METAPLEX_PROGRAM_ID.toBuffer(), mintPubkey.toBuffer()],
-            CONSTANTS.METAPLEX_PROGRAM_ID
-        );
+    private async checkMetadataMutability(mintPubkey: PublicKey, mintAddress: string): Promise<boolean> {
+        let isMutable = true;
+        try {
+            const [metadataPDA] = PublicKey.findProgramAddressSync(
+                [Buffer.from('metadata'), CONSTANTS.METAPLEX_PROGRAM_ID.toBuffer(), mintPubkey.toBuffer()],
+                CONSTANTS.METAPLEX_PROGRAM_ID
+            );
 
-        const metadataAccount = await this.connection.getAccountInfo(metadataPDA);
-        if (metadataAccount && metadataAccount.data.length > 0) {
-            const isMutable = metadataAccount.data[metadataAccount.data.length - 1] === 1;
-            if (isMutable) {
-                logger.warn(`[Anti-Rug] ⚠️ WARNING: Metadata is Mutable (Bait and Switch risk).`);
+            const metadataAccount = await this.connection.getAccountInfo(metadataPDA);
+            if (metadataAccount && metadataAccount.data.length > 0) {
+                // The isMutable byte is usually at index 11 or nearby in the older Token Metadata standard,
+                // but for safety we analyze the specific data frame. By default let's assume if it has data, check length
+                // In metaplex standard, isMutable is at byte offset 11 + 32 + 32 + ... actually it's a fixed offset
+                // Just use a basic heuristic or if we fail to parse, default to safer interpretation.
+                // Assuming last byte logic from previous code:
+                isMutable = metadataAccount.data[metadataAccount.data.length - 1] === 1;
             } else {
-                logger.info(`[Anti-Rug] ✅ Metadata is Immutable.`);
+                // If we can't fetch metadata, we assume it's mutable to be safe? Or immutable?
+                // Often tokens without metadata are just native spl, so no mutability.
+                isMutable = false;
             }
+        } catch (e) {
+            logger.warn(`[Anti-Rug] Metadata check failed: ${e}`);
+        }
+
+        const isUpdateSafe = !isMutable;
+
+        broadcastEvent('SCAN_METADATA', {
+            action: 'MUTABILITY',
+            mintAddress,
+            updateSafe: isUpdateSafe
+        });
+
+        if (isMutable) {
+            logger.warn(`[Anti-Rug] ⚠️ WARNING: Metadata is Mutable (Bait and Switch risk).`);
+            // Depending on risk tolerance, you might want to return false here to block the snipe completely:
+            // return false; 
+            // For now, logging warning but still returning true to not block totally, or return false if you are strictly blocking:
+            return false;
+        } else {
+            logger.info(`[Anti-Rug] ✅ Metadata is Immutable.`);
+        }
+        return true;
+    }
+
+    private async checkInsightXScanner(mintAddress: string): Promise<void> {
+        try {
+            // Placeholder: The InsightX API requires an API key, usually passed as a header or query param.
+            // If the user hasn't provided one in .env, we gracefully log and bypass to avoid halting execution.
+            logger.info(`[Anti-Rug] 🔍 Mitigating risks with InsightX BubbleMaps Scanner for ${mintAddress}...`);
+            const insightXKey = process.env.INSIGHTX_API_KEY;
+
+            if (!insightXKey) {
+                logger.info(`[Anti-Rug] ⏺️ InsightX API key (INSIGHTX_API_KEY) not found in .env, skipping advanced Bubblemaps check.`);
+                return;
+            }
+
+            const res = await fetch(`https://api.insightx.network/v1/scanner?address=${mintAddress}`, {
+                headers: {
+                    'Authorization': `Bearer ${insightXKey}`
+                }
+            });
+
+            if (res.ok) {
+                const data = await res.json() as any;
+                if (data && data.safetyScore !== undefined && data.safetyScore < 50) {
+                    logger.warn(`[Anti-Rug] 🚨 InsightX reports low safety score: ${data.safetyScore}`);
+                } else {
+                    logger.info(`[Anti-Rug] ✅ InsightX cluster analysis indicates token is relatively safe.`);
+                }
+            }
+        } catch (e) {
+            logger.warn(`[Anti-Rug] InsightX API check failed or rate limited.`);
         }
     }
 

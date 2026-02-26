@@ -13,7 +13,8 @@ import chalk from "chalk";
 
 import { keypair } from "../services/solanaService";
 import { Token } from "../types/token";
-import { addSnipedTokenDb } from "../utils/db.js";
+import { addSnipedTokenDb, getSnipedTokensDb } from "../utils/db.js";
+import { broadcastEvent } from "../api/server.js";
 
 interface SnipeData {
   tokenAddress: string;
@@ -134,6 +135,11 @@ export async function snipe(token: Token): Promise<boolean> {
       snipeData.liquidity,
       profitInUSD
     );
+
+    // Push live execution data across the WebSocket layer asynchronously
+    getSnipedTokensDb().then((updatedTokens) => {
+      broadcastEvent('TOKENS', updatedTokens);
+    }).catch((e) => logger.error('[WS] Failed to broadcast new snipe data:', e));
 
     return true;
   } catch (error) {
