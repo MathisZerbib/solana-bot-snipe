@@ -23,7 +23,7 @@ interface SnipeData {
 
 type MonitorResult = "Take Profit" | "Stop Loss" | "Partial Sell";
 
-let currentCapital: number; // Assuming this is defined elsewhere in your code
+let currentCapital: number = 1000; // Initialize with dummy capital
 
 export async function snipe(token: Token): Promise<boolean> {
   if (!token || !token.name || !token.address) {
@@ -38,29 +38,22 @@ export async function snipe(token: Token): Promise<boolean> {
     return false;
   }
 
-  // Uncomment and use these when needed
-  // logger.info(
-  //   `Checking liquidity and risk for token: ${tokenName} (${tokenAddress})`
-  // );
-  // const { liquidity, highRisk }: LiquidityRiskResult = await getLiquidityAndRisk(tokenAddress);
+  const { connection } = require("../services/solanaService");
+  const { AntiRugEngine } = require("../services/antiRug");
+  const antiRug = new AntiRugEngine(connection.rpcEndpoint);
 
-  // if (highRisk) {
-  //   logger.info(`Skipping token ${tokenName} due to high risk.`);
-  //   return false;
-  // }
-
-  // if (liquidity < CONFIG.minLiquidity) {
-  //   logger.info(
-  //     `Skipping token ${tokenName} due to insufficient liquidity: $${liquidity}`
-  //   );
-  //   return false;
-  // }
-
-  // logger.info(
-  //   `Sniping token: ${tokenName} (${tokenAddress}) with liquidity: $${liquidity}`
-  // );
+  logger.info(`[Module 1 & 2] Running Anti-Rug Engine on ${tokenAddress}...`);
+  const isSafe = await antiRug.analyzeToken(tokenAddress);
+  if (!isSafe) {
+    logger.warn(`[Sniperbot] Token ${tokenName} failed Anti-Rug analysis. Bailing.`);
+    return false;
+  }
 
   try {
+    // ----------------------------------------------------
+    // Module 3: MEV & Execution Blueprint Implementation
+    // Use Jito instead of standard RPC if possible
+    // ----------------------------------------------------
     // Uncomment and use these when needed
     // const swapResponse: SwapResponse = await solanaTracker.getSwapInstructions(
     //   "So11111111111111111111111111111111111111112", // From Token (SOL)

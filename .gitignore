@@ -5,5 +5,11 @@
 .env.production.local
 node_modules
 build
+dist
 .DS_Store
 package-lock.json
+
+# Bot State & Logs
+*.log
+skipped-tokens.json
+successful-snipes-liquidity.json
