@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # The Core NodeJS Sniper Bot
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: solana_bot_engine
+    # We pass the env variables securely into the container
+    env_file:
+      - .env
+    environment:
+      - PAPER_TRADE_MODE=${PAPER_TRADE_MODE:-true}
+    volumes:
+      # Data persistence! Ensures the db survives container restarts.
+      - solana_bot_data:/app/data
+    ports:
+      - "3001:3001"
+    restart: always
+    networks:
+      - bot_network
+
+  # The React.js (Nginx) Frontend Interface
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Passes the env config to Vite for the static React build
+        - VITE_PAPER_TRADE_MODE=${PAPER_TRADE_MODE:-true}
+    container_name: solana_bot_ui
+    ports:
+      - "8080:80" # Maps localhost:8080 to the internal Nginx 80 port
+    restart: always
+    networks:
+      - bot_network
+
+volumes:
+  solana_bot_data:
+
+networks:
+  bot_network:
+    driver: bridge

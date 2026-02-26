@@ -2,11 +2,21 @@ import { Connection, PublicKey } from "@solana/web3.js";
 import { getMint, Mint } from "@solana/spl-token";
 import { logger } from "../logger/logger.js";
 
+const safePublicKey = (address: string) => {
+    try {
+        return new PublicKey(address);
+    } catch {
+        return SystemProgram.programId;
+    }
+}
+
+import { SystemProgram } from "@solana/web3.js";
+
 const CONSTANTS = {
-    RAYDIUM_V4_PROGRAM_ID: new PublicKey("675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"),
-    PUMP_FUN_PROGRAM_ID: new PublicKey("6EF8rrecthR5Dkzon8Nwu78hRvfX4lfsz2sVd2eKpgw"),
-    TOKEN_2022_PROGRAM_ID: new PublicKey("TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"),
-    METAPLEX_PROGRAM_ID: new PublicKey('metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s')
+    RAYDIUM_V4_PROGRAM_ID: safePublicKey("675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"),
+    PUMP_FUN_PROGRAM_ID: safePublicKey("6EF8rrecthR5Dkzon8Nwu78hRvfX4lfsz2sVd2eKpgw"),
+    TOKEN_2022_PROGRAM_ID: safePublicKey("TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"),
+    METAPLEX_PROGRAM_ID: safePublicKey('metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s')
 };
 
 /**

@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const CONFIG: {
-  [x: string]: string | number;
+  [x: string]: string | number | boolean;
   amountToSwap: number,
   amountToSell: number,
   slippage: number,
@@ -19,7 +19,10 @@ export const CONFIG: {
   stopLossPercentage: number,
   breakEvenPercentage: number,
   priceCheckInterval: number,
+  paperTrade: boolean,
 } = {
+  // Config Strategy Mode
+  paperTrade: process.env.PAPER_TRADE_MODE !== "false", // Default to true (paper trading) unless strictly false
   // Sniping Limits (Tier-1 Optimizations)
   amountToSwap: 0.1,   // Increased to 0.1 SOL for a realistic snipe
   amountToSell: 0.1,

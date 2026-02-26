@@ -3,38 +3,23 @@
 import { getLatestTokens } from "./services/solanaService";
 import { snipe } from "./handlers/snipeHandler";
 import { CONFIG } from "./config/config";
-import fs from "fs";
 import { Token } from "./types/token";
 import { logger } from "./logger/logger";
+import { initDb, loadSkippedTokensDb, addSkippedTokenDb } from "./utils/db.js";
+import { startApiServer } from "./api/server.js";
 
-const SKIPPED_TOKENS_FILE = "./skipped-tokens.json";
 const maxTokenAge = CONFIG.maxTokenAge || 1 * 60 * 1000; // Default to 1 minute
 let hasSnipedSuccessfully = false;
-
-// Load skipped tokens from file
-function loadSkippedTokens(): Set<string> {
-  if (fs.existsSync(SKIPPED_TOKENS_FILE)) {
-    const data = fs.readFileSync(SKIPPED_TOKENS_FILE, "utf-8");
-    return new Set(JSON.parse(data));
-  }
-  return new Set();
-}
-
-// Save skipped tokens to file
-function saveSkippedTokens(skippedTokens: Set<string>): void {
-  fs.writeFileSync(
-    SKIPPED_TOKENS_FILE,
-    JSON.stringify(Array.from(skippedTokens)),
-    "utf-8"
-  );
-}
 
 async function main(): Promise<void> {
   const startDate = new Date();
   logger.info("Sniper bot started", { startDate });
 
-  // Initialize skipped tokens set
-  let skippedTokens: Set<string> = loadSkippedTokens();
+  // Boot GUI Configuration API Endpoint Handler Space
+  startApiServer(3001);
+
+  await initDb();
+  let skippedTokens: Set<string> = await loadSkippedTokensDb();
   let snipedTokens: Set<string> = new Set();
 
   while (true && !hasSnipedSuccessfully) {
@@ -64,7 +49,7 @@ async function main(): Promise<void> {
             // If sniping failed or token was skipped, add to skippedTokens
             if (!result) {
               skippedTokens.add(tokenAddress);
-              saveSkippedTokens(skippedTokens);
+              await addSkippedTokenDb(tokenAddress);
             }
 
             // If a successful snipe occurred, set the flag and stop further sniping

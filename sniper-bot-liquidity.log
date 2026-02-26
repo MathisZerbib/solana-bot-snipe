@@ -244,3 +244,211 @@
 {"level":"warn","message":"No pair data found for token FSV4Lb1nTShhtYgGx5gRF5A3gfVF6UrwgAZsNuA5gbxH on DEX Screener.","timestamp":"2024-08-24T13:32:18.790Z"}
 {"level":"info","message":"Skipping token ✨DOGE-SOL due to high risk.","timestamp":"2024-08-24T13:32:18.790Z"}
 {"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2024-08-24T13:32:18.791Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:00:08.437Z","timestamp":"2026-02-26T22:00:08.438Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 404","stack":"Error: HTTP error! status: 404\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:39:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:00:08.591Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 404","stack":"Error: HTTP error! status: 404\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:39:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:00:10.621Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 404","stack":"Error: HTTP error! status: 404\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:39:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:00:12.650Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 404","stack":"Error: HTTP error! status: 404\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:39:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:00:14.674Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 404","stack":"Error: HTTP error! status: 404\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:39:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:00:16.712Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:02:16.785Z","timestamp":"2026-02-26T22:02:16.786Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 401","stack":"Error: HTTP error! status: 401\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:46:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:02:16.984Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 401","stack":"Error: HTTP error! status: 401\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:46:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:02:19.051Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 401","stack":"Error: HTTP error! status: 401\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:46:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:02:21.117Z"}
+{"level":"error","message":"Error in main loop: HTTP error! status: 401","stack":"Error: HTTP error! status: 401\n    at getLatestTokens (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/services/solanaService.ts:46:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:49:31)","timestamp":"2026-02-26T22:02:23.178Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:04:23.292Z","timestamp":"2026-02-26T22:04:23.293Z"}
+{"level":"info","message":"Found 97 new tokens","timestamp":"2026-02-26T22:04:23.926Z"}
+{"level":"error","message":"Error in main loop: require is not defined","stack":"ReferenceError: require is not defined\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:41:26)\n    at <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:34)\n    at Array.map (<anonymous>)\n    at main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:60:58)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)","timestamp":"2026-02-26T22:04:23.927Z"}
+{"level":"info","message":"Found 97 new tokens","timestamp":"2026-02-26T22:04:26.371Z"}
+{"level":"error","message":"Error in main loop: require is not defined","stack":"ReferenceError: require is not defined\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:41:26)\n    at <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:34)\n    at Array.map (<anonymous>)\n    at main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:60:58)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)","timestamp":"2026-02-26T22:04:26.371Z"}
+{"level":"info","message":"Found 97 new tokens","timestamp":"2026-02-26T22:04:28.819Z"}
+{"level":"error","message":"Error in main loop: require is not defined","stack":"ReferenceError: require is not defined\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:41:26)\n    at <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:34)\n    at Array.map (<anonymous>)\n    at main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:60:58)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)","timestamp":"2026-02-26T22:04:28.819Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:05:24.841Z","timestamp":"2026-02-26T22:05:24.842Z"}
+{"level":"info","message":"Found 97 new tokens","timestamp":"2026-02-26T22:05:25.367Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on ERC18WhtNizwugzUJ5N9uu2oMjwu2PeZgGnDvHHopump...","timestamp":"2026-02-26T22:05:25.368Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: ERC18WhtNizwugzUJ5N9uu2oMjwu2PeZgGnDvHHopump","timestamp":"2026-02-26T22:05:25.368Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:05:25.493Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:05:25.493Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:05:25.496Z"}
+{"level":"error","message":"[Anti-Rug] Analysis failed for ERC18WhtNizwugzUJ5N9uu2oMjwu2PeZgGnDvHHopump: 429 Too Many Requests:  {\"jsonrpc\":\"2.0\",\"error\":{\"code\": 429, \"message\":\"Too many requests for a specific RPC call\"}, \"id\": \"ba8bc58d-4247-4f5a-b0dd-3c15909eb33f\" } \r\n","timestamp":"2026-02-26T22:05:33.359Z"}
+{"level":"warn","message":"[Sniperbot] Token Coomer failed Anti-Rug analysis. Bailing.","timestamp":"2026-02-26T22:05:33.359Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:05:33.362Z"}
+{"level":"info","message":"Found 3 new tokens","timestamp":"2026-02-26T22:05:35.804Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on E29idpjLSvtUPFiAeUbQJiVoXV9RnEnfsjPq2RM9pump...","timestamp":"2026-02-26T22:05:35.804Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: E29idpjLSvtUPFiAeUbQJiVoXV9RnEnfsjPq2RM9pump","timestamp":"2026-02-26T22:05:35.804Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:05:35.927Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:05:35.927Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:05:35.929Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:07:56.070Z","timestamp":"2026-02-26T22:07:56.071Z"}
+{"level":"info","message":"Found 94 new tokens","timestamp":"2026-02-26T22:07:56.552Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on 9tms4wZWexbivD9txkx1314f14ZQHrJamXVR4YMgpump...","timestamp":"2026-02-26T22:07:56.553Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: 9tms4wZWexbivD9txkx1314f14ZQHrJamXVR4YMgpump","timestamp":"2026-02-26T22:07:56.553Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:07:56.800Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:07:56.801Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:07:56.802Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 100.00%)","timestamp":"2026-02-26T22:07:57.000Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:07:57.069Z"}
+{"level":"info","message":"[Anti-Rug] 🟩 SECURE: No suspicious Genesis-Slot bundling detected.","timestamp":"2026-02-26T22:07:57.230Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing RPC Buy/Sell Sandbox Simulation...","timestamp":"2026-02-26T22:07:57.231Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 FINAL VERDICT: GO. Token 9tms4wZWexbivD9txkx1314f14ZQHrJamXVR4YMgpump passed all strict security modules.","timestamp":"2026-02-26T22:07:57.231Z"}
+{"level":"error","message":"Error: No price data found for token 9tms4wZWexbivD9txkx1314f14ZQHrJamXVR4YMgpump.","timestamp":"2026-02-26T22:07:57.368Z"}
+{"level":"error","message":"Error: No price data found for token 9tms4wZWexbivD9txkx1314f14ZQHrJamXVR4YMgpump.","timestamp":"2026-02-26T22:07:57.501Z"}
+{"level":"info","message":"Monitoring token: 9tms4wZWexbivD9txkx1314f14ZQHrJamXVR4YMgpump, Entry Price: $0.00, Initial TP: $0.00, Initial SL: $NaN","timestamp":"2026-02-26T22:07:57.528Z"}
+{"level":"error","message":"Error sniping token IranTrump: Function not implemented.","stack":"Error: Function not implemented.\n    at getTokenPriceInSOL (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:178:9)\n    at monitorToken (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:126:31)\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:94:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:28)\n    at async Promise.all (index 0)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:59:30)","timestamp":"2026-02-26T22:07:57.529Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:07:57.530Z"}
+{"level":"info","message":"Found 1 new tokens","timestamp":"2026-02-26T22:07:59.915Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on At8eZZrt6AmBRAVmPct1aGhCoUs5jZenhVHCt2Zwpump...","timestamp":"2026-02-26T22:07:59.916Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: At8eZZrt6AmBRAVmPct1aGhCoUs5jZenhVHCt2Zwpump","timestamp":"2026-02-26T22:07:59.916Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:08:00.045Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 75.30%)","timestamp":"2026-02-26T22:08:00.755Z"}
+{"level":"warn","message":"[Anti-Rug] ⚠️ WARNING: Metadata is Mutable (Bait and Switch risk).","timestamp":"2026-02-26T22:08:00.819Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:08:00.820Z"}
+{"level":"info","message":"[Anti-Rug] 🟩 SECURE: No suspicious Genesis-Slot bundling detected.","timestamp":"2026-02-26T22:08:00.952Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing RPC Buy/Sell Sandbox Simulation...","timestamp":"2026-02-26T22:08:00.953Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 FINAL VERDICT: GO. Token At8eZZrt6AmBRAVmPct1aGhCoUs5jZenhVHCt2Zwpump passed all strict security modules.","timestamp":"2026-02-26T22:08:00.953Z"}
+{"level":"error","message":"Error: No price data found for token At8eZZrt6AmBRAVmPct1aGhCoUs5jZenhVHCt2Zwpump.","timestamp":"2026-02-26T22:08:00.988Z"}
+{"level":"error","message":"Error: No price data found for token At8eZZrt6AmBRAVmPct1aGhCoUs5jZenhVHCt2Zwpump.","timestamp":"2026-02-26T22:08:01.045Z"}
+{"level":"info","message":"Monitoring token: At8eZZrt6AmBRAVmPct1aGhCoUs5jZenhVHCt2Zwpump, Entry Price: $0.00, Initial TP: $0.00, Initial SL: $NaN","timestamp":"2026-02-26T22:08:01.071Z"}
+{"level":"error","message":"Error sniping token Sucker Idolizing Mediocre Pussy: Function not implemented.","stack":"Error: Function not implemented.\n    at getTokenPriceInSOL (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:178:9)\n    at monitorToken (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:126:31)\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:94:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:28)\n    at async Promise.all (index 0)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:59:30)","timestamp":"2026-02-26T22:08:01.071Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:08:01.072Z"}
+{"level":"info","message":"Found 3 new tokens","timestamp":"2026-02-26T22:08:03.517Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on 7R2Rgx4bj2ZvhmvMPKK4DGmPcDq875PzyDDprw7Ypump...","timestamp":"2026-02-26T22:08:03.517Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: 7R2Rgx4bj2ZvhmvMPKK4DGmPcDq875PzyDDprw7Ypump","timestamp":"2026-02-26T22:08:03.517Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:08:03.648Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:08:03.648Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:08:03.650Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 100.00%)","timestamp":"2026-02-26T22:08:03.843Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:08:03.907Z"}
+{"level":"info","message":"[Anti-Rug] 🟩 SECURE: No suspicious Genesis-Slot bundling detected.","timestamp":"2026-02-26T22:08:04.052Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing RPC Buy/Sell Sandbox Simulation...","timestamp":"2026-02-26T22:08:04.052Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 FINAL VERDICT: GO. Token 7R2Rgx4bj2ZvhmvMPKK4DGmPcDq875PzyDDprw7Ypump passed all strict security modules.","timestamp":"2026-02-26T22:08:04.052Z"}
+{"level":"error","message":"Error: No price data found for token 7R2Rgx4bj2ZvhmvMPKK4DGmPcDq875PzyDDprw7Ypump.","timestamp":"2026-02-26T22:08:04.106Z"}
+{"level":"error","message":"Error: No price data found for token 7R2Rgx4bj2ZvhmvMPKK4DGmPcDq875PzyDDprw7Ypump.","timestamp":"2026-02-26T22:08:04.163Z"}
+{"level":"info","message":"Monitoring token: 7R2Rgx4bj2ZvhmvMPKK4DGmPcDq875PzyDDprw7Ypump, Entry Price: $0.00, Initial TP: $0.00, Initial SL: $NaN","timestamp":"2026-02-26T22:08:04.186Z"}
+{"level":"error","message":"Error sniping token Lana.A.I: Function not implemented.","stack":"Error: Function not implemented.\n    at getTokenPriceInSOL (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:178:9)\n    at monitorToken (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:126:31)\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:94:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:28)\n    at async Promise.all (index 0)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:59:30)","timestamp":"2026-02-26T22:08:04.186Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:08:04.187Z"}
+{"level":"info","message":"Found 3 new tokens","timestamp":"2026-02-26T22:08:06.591Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on DMQeqKEqqueNRT1VDkU81mHw26CVcwWaAT7ZMvqqpump...","timestamp":"2026-02-26T22:08:06.592Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: DMQeqKEqqueNRT1VDkU81mHw26CVcwWaAT7ZMvqqpump","timestamp":"2026-02-26T22:08:06.592Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:08:06.723Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:08:06.723Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:08:06.726Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 100.00%)","timestamp":"2026-02-26T22:08:06.910Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:08:06.962Z"}
+{"level":"info","message":"[Anti-Rug] 🟩 SECURE: No suspicious Genesis-Slot bundling detected.","timestamp":"2026-02-26T22:08:07.103Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing RPC Buy/Sell Sandbox Simulation...","timestamp":"2026-02-26T22:08:07.103Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 FINAL VERDICT: GO. Token DMQeqKEqqueNRT1VDkU81mHw26CVcwWaAT7ZMvqqpump passed all strict security modules.","timestamp":"2026-02-26T22:08:07.104Z"}
+{"level":"error","message":"Error: No price data found for token DMQeqKEqqueNRT1VDkU81mHw26CVcwWaAT7ZMvqqpump.","timestamp":"2026-02-26T22:08:07.161Z"}
+{"level":"error","message":"Error: No price data found for token DMQeqKEqqueNRT1VDkU81mHw26CVcwWaAT7ZMvqqpump.","timestamp":"2026-02-26T22:08:07.211Z"}
+{"level":"info","message":"Monitoring token: DMQeqKEqqueNRT1VDkU81mHw26CVcwWaAT7ZMvqqpump, Entry Price: $0.00, Initial TP: $0.00, Initial SL: $NaN","timestamp":"2026-02-26T22:08:07.233Z"}
+{"level":"error","message":"Error sniping token LION: Function not implemented.","stack":"Error: Function not implemented.\n    at getTokenPriceInSOL (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:178:9)\n    at monitorToken (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:126:31)\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:94:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:28)\n    at async Promise.all (index 0)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:59:30)","timestamp":"2026-02-26T22:08:07.233Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:08:07.234Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:09:08.026Z","timestamp":"2026-02-26T22:09:08.027Z"}
+{"level":"info","message":"Found 92 new tokens","timestamp":"2026-02-26T22:09:08.524Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on aQsAyimuX3yx8LTGaGJse32TQZuXtY3gUbvQpxudGZV...","timestamp":"2026-02-26T22:09:08.524Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: aQsAyimuX3yx8LTGaGJse32TQZuXtY3gUbvQpxudGZV","timestamp":"2026-02-26T22:09:08.525Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:09:08.765Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 100.00%)","timestamp":"2026-02-26T22:09:08.916Z"}
+{"level":"warn","message":"[Anti-Rug] ⚠️ WARNING: Metadata is Mutable (Bait and Switch risk).","timestamp":"2026-02-26T22:09:08.995Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:09:08.996Z"}
+{"level":"warn","message":"[Anti-Rug] 🔴 NO-GO: Jito Bundle Attack detected in Genesis Slot (402931048).","timestamp":"2026-02-26T22:09:09.155Z"}
+{"level":"warn","message":"[Sniperbot] Token TrumpBucks failed Anti-Rug analysis. Bailing.","timestamp":"2026-02-26T22:09:09.155Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:09:09.157Z"}
+{"level":"info","message":"Found 3 new tokens","timestamp":"2026-02-26T22:09:13.930Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump...","timestamp":"2026-02-26T22:09:13.930Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump","timestamp":"2026-02-26T22:09:13.930Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:09:14.144Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:09:14.144Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:09:14.146Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 96.68%)","timestamp":"2026-02-26T22:09:14.842Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:09:14.904Z"}
+{"level":"info","message":"[Anti-Rug] 🟩 SECURE: No suspicious Genesis-Slot bundling detected.","timestamp":"2026-02-26T22:09:15.051Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing RPC Buy/Sell Sandbox Simulation...","timestamp":"2026-02-26T22:09:15.051Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 FINAL VERDICT: GO. Token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump passed all strict security modules.","timestamp":"2026-02-26T22:09:15.051Z"}
+{"level":"error","message":"Error: No price data found for token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump.","timestamp":"2026-02-26T22:09:15.217Z"}
+{"level":"error","message":"Error: No price data found for token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump.","timestamp":"2026-02-26T22:09:15.341Z"}
+{"level":"info","message":"Monitoring token: AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump, Entry Price: $0.00, Initial TP: $0.00, Initial SL: $NaN","timestamp":"2026-02-26T22:09:15.369Z"}
+{"level":"error","message":"Error: No price data found for token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump.","timestamp":"2026-02-26T22:09:15.399Z"}
+{"level":"info","message":"Partial sell triggered for token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump. Selling 25%...","timestamp":"2026-02-26T22:09:15.421Z"}
+{"level":"info","message":"\u001b[33mAttempting to sell 0.025 of token: AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump\u001b[39m","timestamp":"2026-02-26T22:09:15.422Z"}
+{"level":"error","message":"\u001b[31mFailed to sell token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump:\u001b[39m Failed to get swap instructions: HTTP error! status: 500, message: {\"error\":\"Failed to swap\",\"details\":\"Failed to get quote: No multi-hop route found\"}","stack":"Error: Failed to get swap instructions: HTTP error! status: 500, message: {\"error\":\"Failed to swap\",\"details\":\"Failed to get quote: No multi-hop route found\"}\n    at SolanaTracker.<anonymous> (file:///Users/zer/Documents/lab/perso/solana-bot-snipe/node_modules/solana-swap/dist/esm/index.js:260:23)\n    at Generator.throw (<anonymous>)\n    at rejected (file:///Users/zer/Documents/lab/perso/solana-bot-snipe/node_modules/solana-swap/dist/esm/index.js:5:65)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)","timestamp":"2026-02-26T22:09:18.964Z"}
+{"level":"error","message":"Error sniping token XYZ Coin: Failed to sell token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump","stack":"Error: Failed to sell token AaSPDCNwxXvxtaoGStqtmujQcHa1rEHYnmE1Ssgxpump\n    at sellToken (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:102:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async monitorToken (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/tradeHandler.ts:145:7)\n    at async snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:94:35)\n    at async <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:28)\n    at async Promise.all (index 0)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:59:30)","timestamp":"2026-02-26T22:09:18.967Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:09:18.967Z"}
+{"level":"info","message":"Found 3 new tokens","timestamp":"2026-02-26T22:09:21.457Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on 8zd6qZhswHk9tATitnrN3qyAVmQjXNnnsTWcmFqcpump...","timestamp":"2026-02-26T22:09:21.458Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: 8zd6qZhswHk9tATitnrN3qyAVmQjXNnnsTWcmFqcpump","timestamp":"2026-02-26T22:09:21.458Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:09:21.702Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:09:21.702Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:09:21.703Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 100.00%)","timestamp":"2026-02-26T22:09:21.968Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:09:22.034Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:09:52.250Z","timestamp":"2026-02-26T22:09:52.251Z"}
+{"level":"info","message":"Found 87 new tokens","timestamp":"2026-02-26T22:09:52.732Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump...","timestamp":"2026-02-26T22:09:52.733Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump","timestamp":"2026-02-26T22:09:52.733Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:09:52.960Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 79.80%)","timestamp":"2026-02-26T22:09:53.667Z"}
+{"level":"warn","message":"[Anti-Rug] ⚠️ WARNING: Metadata is Mutable (Bait and Switch risk).","timestamp":"2026-02-26T22:09:53.736Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:09:53.736Z"}
+{"level":"info","message":"[Anti-Rug] 🟩 SECURE: No suspicious Genesis-Slot bundling detected.","timestamp":"2026-02-26T22:09:53.878Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing RPC Buy/Sell Sandbox Simulation...","timestamp":"2026-02-26T22:09:53.878Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 FINAL VERDICT: GO. Token EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump passed all strict security modules.","timestamp":"2026-02-26T22:09:53.878Z"}
+{"level":"error","message":"Error: No price data found for token EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump.","timestamp":"2026-02-26T22:09:53.999Z"}
+{"level":"error","message":"Error: No price data found for token EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump.","timestamp":"2026-02-26T22:09:54.106Z"}
+{"level":"info","message":"Monitoring token: EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump, Entry Price: $0.00, Initial TP: $0.00, Initial SL: $NaN","timestamp":"2026-02-26T22:09:54.129Z"}
+{"level":"error","message":"Error: No price data found for token EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump.","timestamp":"2026-02-26T22:09:54.172Z"}
+{"level":"info","message":"Partial sell triggered for token EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump. Selling 25%...","timestamp":"2026-02-26T22:09:54.195Z"}
+{"level":"info","message":"\u001b[33mAttempting to simulate selling 0.025 of token: EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump\u001b[39m","timestamp":"2026-02-26T22:09:54.196Z"}
+{"level":"info","message":"\u001b[32mSuccessfully simulated selling 0.025 of token EibzT1gtCacf5zK37wUr999QcBfTasfxa3Xp3G6apump. Transaction ID: simulated_sell_txid\u001b[39m","timestamp":"2026-02-26T22:09:54.196Z"}
+{"level":"info","message":"New take profit price: $0.00, Remaining amount: 0.07500000000000001","timestamp":"2026-02-26T22:09:54.196Z"}
+{"level":"info","message":"Result for Claude Theft Auto: Partial Sell","timestamp":"2026-02-26T22:09:54.196Z"}
+{"level":"error","message":"Error sniping token Claude Theft Auto: Invalid exit price","stack":"Error: Invalid exit price\n    at snipe (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/handlers/snipeHandler.ts:104:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async <anonymous> (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:62:28)\n    at async Promise.all (index 0)\n    at async main (/Users/zer/Documents/lab/perso/solana-bot-snipe/src/index.ts:59:30)","timestamp":"2026-02-26T22:09:54.197Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:09:54.198Z"}
+{"level":"info","message":"Found 2 new tokens","timestamp":"2026-02-26T22:09:56.590Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on GJBuAWz4tNcGvc9vYcUjjJzaAf5X68hB1mqE57SUfKP...","timestamp":"2026-02-26T22:09:56.590Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: GJBuAWz4tNcGvc9vYcUjjJzaAf5X68hB1mqE57SUfKP","timestamp":"2026-02-26T22:09:56.590Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:09:56.718Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:09:56.718Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:09:56.719Z"}
+{"level":"warn","message":"[Anti-Rug] 🔴 NO-GO: Sybil Cluster Detected! 3 identical wallets.","timestamp":"2026-02-26T22:09:57.390Z"}
+{"level":"warn","message":"[Sniperbot] Token Grok Token failed Anti-Rug analysis. Bailing.","timestamp":"2026-02-26T22:09:57.390Z"}
+{"level":"info","message":"Successfully sniped 0 out of 1 attempts","timestamp":"2026-02-26T22:09:57.391Z"}
+{"level":"info","message":"Sniper bot started","startDate":"2026-02-26T22:11:19.632Z","timestamp":"2026-02-26T22:11:19.633Z"}
+{"level":"info","message":"Found 88 new tokens","timestamp":"2026-02-26T22:11:20.099Z"}
+{"level":"info","message":"[Module 1 & 2] Running Anti-Rug Engine on CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump...","timestamp":"2026-02-26T22:11:20.100Z"}
+{"level":"info","message":"\n[Anti-Rug] 🛡️ Starting deep forensic scan for: CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump","timestamp":"2026-02-26T22:11:20.100Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Authorities Revoked (No Honeypot / Infinite Minting)","timestamp":"2026-02-26T22:11:20.333Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Token-2022 Standard Detected! Analyzing SPL Extensions (Hooks/Taxes)...","timestamp":"2026-02-26T22:11:20.333Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 Validated: Token-2022 Extensions are safe (No Hooks or Fees).","timestamp":"2026-02-26T22:11:20.335Z"}
+{"level":"info","message":"[Anti-Rug] ✅ Supply Distribution Clean (Top non-AMM wallets hold 100.00%)","timestamp":"2026-02-26T22:11:20.607Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing Bundle Sniper Detection...","timestamp":"2026-02-26T22:11:20.674Z"}
+{"level":"info","message":"[Anti-Rug] 🟩 SECURE: No suspicious Genesis-Slot bundling detected.","timestamp":"2026-02-26T22:11:20.832Z"}
+{"level":"info","message":"[Anti-Rug] 🔍 Initializing RPC Buy/Sell Sandbox Simulation...","timestamp":"2026-02-26T22:11:20.833Z"}
+{"level":"info","message":"[Anti-Rug] 🟢 FINAL VERDICT: GO. Token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump passed all strict security modules.","timestamp":"2026-02-26T22:11:20.833Z"}
+{"level":"error","message":"Error: No price data found for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump.","timestamp":"2026-02-26T22:11:20.958Z"}
+{"level":"error","message":"Error: No price data found for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump.","timestamp":"2026-02-26T22:11:21.077Z"}
+{"level":"info","message":"Monitoring token: CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump, Entry Price: $0.00, Initial TP: $0.00, Initial SL: $NaN","timestamp":"2026-02-26T22:11:21.109Z"}
+{"level":"error","message":"Error: No price data found for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump.","timestamp":"2026-02-26T22:11:21.144Z"}
+{"level":"info","message":"Partial sell triggered for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Selling 25%...","timestamp":"2026-02-26T22:11:21.174Z"}
+{"level":"info","message":"\u001b[33mAttempting to simulate selling 0.025 of token: CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump\u001b[39m","timestamp":"2026-02-26T22:11:21.175Z"}
+{"level":"info","message":"\u001b[32mSuccessfully simulated selling 0.025 of token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Transaction ID: simulated_sell_txid\u001b[39m","timestamp":"2026-02-26T22:11:21.175Z"}
+{"level":"info","message":"New take profit price: $0.00, Remaining amount: 0.07500000000000001","timestamp":"2026-02-26T22:11:21.175Z"}
+{"level":"error","message":"Error: No price data found for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump.","timestamp":"2026-02-26T22:11:26.260Z"}
+{"level":"info","message":"Partial sell triggered for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Selling 25%...","timestamp":"2026-02-26T22:11:26.331Z"}
+{"level":"info","message":"\u001b[33mAttempting to simulate selling 0.018750000000000003 of token: CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump\u001b[39m","timestamp":"2026-02-26T22:11:26.331Z"}
+{"level":"info","message":"\u001b[32mSuccessfully simulated selling 0.018750000000000003 of token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Transaction ID: simulated_sell_txid\u001b[39m","timestamp":"2026-02-26T22:11:26.331Z"}
+{"level":"info","message":"New take profit price: $0.00, Remaining amount: 0.05625000000000001","timestamp":"2026-02-26T22:11:26.331Z"}
+{"level":"error","message":"Error: No price data found for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump.","timestamp":"2026-02-26T22:11:31.412Z"}
+{"level":"info","message":"Partial sell triggered for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Selling 25%...","timestamp":"2026-02-26T22:11:31.485Z"}
+{"level":"info","message":"\u001b[33mAttempting to simulate selling 0.014062500000000002 of token: CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump\u001b[39m","timestamp":"2026-02-26T22:11:31.485Z"}
+{"level":"info","message":"\u001b[32mSuccessfully simulated selling 0.014062500000000002 of token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Transaction ID: simulated_sell_txid\u001b[39m","timestamp":"2026-02-26T22:11:31.485Z"}
+{"level":"info","message":"New take profit price: $0.00, Remaining amount: 0.0421875","timestamp":"2026-02-26T22:11:31.485Z"}
+{"level":"error","message":"Error: No price data found for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump.","timestamp":"2026-02-26T22:11:36.564Z"}
+{"level":"info","message":"Partial sell triggered for token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Selling 25%...","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"\u001b[33mAttempting to simulate selling 0.010546875 of token: CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump\u001b[39m","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"\u001b[32mSuccessfully simulated selling 0.010546875 of token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Transaction ID: simulated_sell_txid\u001b[39m","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"\u001b[33mAttempting to simulate selling 0.031640625000000006 of token: CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump\u001b[39m","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"\u001b[32mSuccessfully simulated selling 0.031640625000000006 of token CDQQ8ipFAPJcBtESFAL5SLutxTpQZKk61CJ1LjrBpump. Transaction ID: simulated_sell_txid\u001b[39m","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"Result for Darwinian Agent: Take Profit","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"Profit from Darwinian Agent: $0.00","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"Updated current capital: $1000.00","timestamp":"2026-02-26T22:11:36.630Z"}
+{"level":"info","message":"Successfully sniped 1 out of 1 attempts","timestamp":"2026-02-26T22:11:36.631Z"}

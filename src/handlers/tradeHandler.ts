@@ -6,6 +6,7 @@ import { logger } from "../logger/logger.js";
 import dotenv from "dotenv";
 import { CONFIG } from "../config/config";
 import chalk from "chalk";
+import { getTokenPriceInSOL, convertWSolToUSD } from "../utils/priceUtils";
 
 dotenv.config();
 
@@ -78,23 +79,26 @@ export async function sellToken(tokenAddress: string, amountToSell: number): Pro
   }
 
   try {
-    logger.info(chalk.yellow(`Attempting to sell ${amountToSell} of token: ${tokenAddress}`));
+    logger.info(chalk.yellow(`Attempting to simulate selling ${amountToSell} of token: ${tokenAddress}`));
 
-    const swapInstructions = await solanaTracker.getSwapInstructions(
-      tokenAddress,
-      "So11111111111111111111111111111111111111112", // To SOL
-      amountToSell,
-      CONFIG.slippage,
-      keypair.publicKey.toBase58(),
-      CONFIG.priorityFee
-    );
+    let txid = "simulated_sell_txid";
 
-    const txid = await solanaTracker.performSwap(swapInstructions);
-    logger.info(
-      chalk.green(
-        `Successfully sold ${amountToSell} of token ${tokenAddress}. Transaction ID: ${txid}`
-      )
-    );
+    if (!CONFIG.paperTrade) {
+      const swapInstructions = await solanaTracker.getSwapInstructions(
+        tokenAddress,
+        "So11111111111111111111111111111111111111112", // To SOL
+        amountToSell,
+        CONFIG.slippage,
+        keypair.publicKey.toBase58(),
+        CONFIG.priorityFee
+      );
+      txid = await solanaTracker.performSwap(swapInstructions);
+
+      logger.info(chalk.green(`Successfully live sold ${amountToSell} of token ${tokenAddress}. Transaction ID: ${txid}`));
+    } else {
+      logger.info(chalk.green(`[Paper Trade] Successfully simulated selling ${amountToSell} of token ${tokenAddress}. Transaction ID: ${txid}`));
+    }
+
     return txid;
   } catch (error) {
     logger.error(chalk.red(`Failed to sell token ${tokenAddress}:`), error);
@@ -123,12 +127,12 @@ export async function monitorToken(
   );
 
   while (remainingAmount > 0) {
-    const currentPriceInSOL = getTokenPriceInSOL(tokenAddress);
+    const currentPriceInSOL = await getTokenPriceInSOL(tokenAddress);
     if (typeof currentPriceInSOL !== "number" || isNaN(currentPriceInSOL)) {
       throw new Error("Invalid current price in SOL");
     }
 
-    const currentPriceInUSD = convertWSolToUSD(currentPriceInSOL);
+    const currentPriceInUSD = await convertWSolToUSD(currentPriceInSOL);
     if (typeof currentPriceInUSD !== "number" || isNaN(currentPriceInUSD)) {
       throw new Error("Invalid current price in USD");
     }
@@ -158,7 +162,7 @@ export async function monitorToken(
       }
 
       logger.info(`New take profit price: $${takeProfitPrice.toFixed(2)}, Remaining amount: ${remainingAmount}`);
-      return "Partial Sell";
+      // Continue monitoring until fully sold
     } else if (currentPriceInUSD <= stopLossPrice) {
       logger.info(`Stop loss hit for token ${tokenAddress}. Selling remaining amount...`);
       await sellToken(tokenAddress, remainingAmount);
@@ -172,13 +176,4 @@ export async function monitorToken(
   }
 
   return "Take Profit"; // All amount sold
-}
-
-function getTokenPriceInSOL(tokenAddress: string) {
-  throw new Error("Function not implemented.");
-}
-
-
-function convertWSolToUSD(currentPriceInSOL: number) {
-  throw new Error("Function not implemented.");
 }

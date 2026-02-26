@@ -8,10 +8,12 @@ import {
 } from "./tradeHandler";
 import { convertWSolToUSD, getTokenPriceInSOL } from "../utils/priceUtils";
 import { logger } from "../logger/logger.js";
+import { solanaTracker } from "../services/solanaService.js";
+import chalk from "chalk";
 
-import fs from "fs";
 import { keypair } from "../services/solanaService";
 import { Token } from "../types/token";
+import { addSnipedTokenDb } from "../utils/db.js";
 
 interface SnipeData {
   tokenAddress: string;
@@ -24,6 +26,9 @@ interface SnipeData {
 type MonitorResult = "Take Profit" | "Stop Loss" | "Partial Sell";
 
 let currentCapital: number = 1000; // Initialize with dummy capital
+
+import { connection } from "../services/solanaService";
+import { AntiRugEngine } from "../services/antiRug";
 
 export async function snipe(token: Token): Promise<boolean> {
   if (!token || !token.name || !token.address) {
@@ -38,8 +43,6 @@ export async function snipe(token: Token): Promise<boolean> {
     return false;
   }
 
-  const { connection } = require("../services/solanaService");
-  const { AntiRugEngine } = require("../services/antiRug");
   const antiRug = new AntiRugEngine(connection.rpcEndpoint);
 
   logger.info(`[Module 1 & 2] Running Anti-Rug Engine on ${tokenAddress}...`);
@@ -54,23 +57,25 @@ export async function snipe(token: Token): Promise<boolean> {
     // Module 3: MEV & Execution Blueprint Implementation
     // Use Jito instead of standard RPC if possible
     // ----------------------------------------------------
-    // Uncomment and use these when needed
-    // const swapResponse: SwapResponse = await solanaTracker.getSwapInstructions(
-    //   "So11111111111111111111111111111111111111112", // From Token (SOL)
-    //   tokenAddress, // To Token (new token address)
-    //   CONFIG.amountToSwap,
-    //   CONFIG.slippage,
-    //   keypair.publicKey.toBase58(), // Payer public key
-    //   CONFIG.priorityFee
-    // );
+    let snipeTxid = "simulated_buy_txid";
+    if (!CONFIG.paperTrade) {
+      const swapResponse = await solanaTracker.getSwapInstructions(
+        "So11111111111111111111111111111111111111112", // From Token (SOL)
+        tokenAddress, // To Token (new token address)
+        CONFIG.amountToSwap,
+        CONFIG.slippage,
+        keypair.publicKey.toBase58(), // Payer public key
+        CONFIG.priorityFee
+      );
 
-    // const txid: string = await solanaTracker.performSwap(swapResponse);
-    // logger.info(chalk.yellow(`Transaction successful for ${tokenName}:`), {
-    //   txid,
-    //   url: `https://explorer.solana.com/tx/${txid}`,
-    // });
-
-    console.log("Fake TX is DONE for", token);
+      snipeTxid = await solanaTracker.performSwap(swapResponse);
+      logger.info(chalk.yellow(`Live Transaction successful for ${tokenName}:`), {
+        txid: snipeTxid,
+        url: `https://explorer.solana.com/tx/${snipeTxid}`,
+      });
+    } else {
+      logger.info(chalk.yellow(`[Paper Trade] Simulated buy for ${tokenName} done.`));
+    }
     // Here tell to stop other snipes
     // Calculate prices for stop-loss and take-profit
 
@@ -117,14 +122,17 @@ export async function snipe(token: Token): Promise<boolean> {
     const snipeData: SnipeData = {
       tokenAddress,
       tokenName,
-      txid: "dummy-txid", // Replace with actual txid when uncommenting related code
+      txid: snipeTxid,
       liquidity: 0, // Replace with actual liquidity when uncommenting related code
       timestamp: new Date().toISOString(),
     };
 
-    fs.appendFileSync(
-      CONFIG.successfulSnipesFile,
-      JSON.stringify(snipeData) + "\n"
+    await addSnipedTokenDb(
+      tokenAddress,
+      tokenName,
+      snipeData.txid,
+      snipeData.liquidity,
+      profitInUSD
     );
 
     return true;

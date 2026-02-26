@@ -32,13 +32,36 @@ interface Token {
 }
 
 export async function getLatestTokens(): Promise<Token[]> {
+  const apiKey = process.env.SOLANA_TRACKER_API_KEY || "";
   const response: Response = await fetch(
-    "https://api.solanatracker.io/tokens/latest"
+    "https://data.solanatracker.io/search?page=1&limit=100&sortBy=createdAt&sortOrder=desc",
+    {
+      headers: {
+        "x-api-key": apiKey,
+      },
+    }
   );
+
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
-  const tokens: Token[] = await response.json();
-  //   console.log("Tokens:", tokens);
+
+  const text = await response.text();
+  let json;
+  try {
+    json = JSON.parse(text);
+  } catch (err) {
+    throw new Error(`Failed to parse response: ${text}`);
+  }
+
+  // The endpoint returns { status: "success", data: [...] }
+  if (json.status !== "success" || !Array.isArray(json.data)) {
+    throw new Error(`Unexpected API response structure`);
+  }
+
+  const tokens: Token[] = json.data.map((item: any) => ({
+    address: item.mint,
+    name: item.name,
+  }));
   return tokens;
 }
